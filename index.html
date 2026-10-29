@@ -98,20 +98,22 @@
           <label for="cat-select" class="block text-xs font-bold text-slate-600">出題カテゴリの選択</label>
           <select id="cat-select" onchange="updateStartScreenInfo()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
             <option value="all">すべてのカテゴリ（全薬効群 ランダム）</option>
-            <option value="循環器系（降圧薬・利尿薬）">循環器系（降圧薬・利尿薬）</option>
-            <option value="循環器系">循環器系（不整脈・抗血栓等）</option>
-            <option value="感染症治療薬（抗菌・抗ウイルス・抗真菌薬）">感染症治療薬（抗菌・抗ウイルス・抗真菌薬）</option>
-            <option value="感染症治療薬">感染症治療薬（抗結核・抗HIV・コロナ薬等）</option>
-            <option value="中枢神経系（向精神薬・抗てんかん薬）">中枢神経系（向精神薬・抗てんかん薬・神経変性）</option>
-            <option value="抗悪性腫瘍薬（分子標的薬・抗体薬等）">抗悪性腫瘍薬（分子標的薬・抗体薬等）</option>
-            <option value="代謝・内分泌系（糖尿病・脂質異常症・痛風治療薬）">代謝・内分泌系（糖尿病・脂質異常症・痛風治療薬）</option>
-            <option value="代謝内分泌">代謝内分泌（甲状腺・新規GLP-1/GIP・骨代謝等）</option>
-            <option value="消化器・呼吸器・疼痛炎症治療薬">消化器・呼吸器・疼痛炎症治療薬</option>
-            <option value="消化器">消化器（便秘治療薬等）</option>
-            <option value="呼吸器">呼吸器（鎮咳・去痰等）</option>
-            <option value="疼痛">疼痛（強オピオイド等）</option>
-            <option value="免疫・炎症">免疫・炎症（JAK阻害・抗IL-6等）</option>
-            <option value="その他の重要薬効群（骨粗鬆症・抗アレルギー・眼科用薬等）">その他（骨粗鬆症・抗アレルギー・眼科・免疫抑制等）</option>
+            <option value="総論">総論（15問）</option>
+            <option value="自律神経系">自律神経系（25問）</option>
+            <option value="中枢神経系">中枢神経系（30問）</option>
+            <option value="循環器系">循環器系（30問）</option>
+            <option value="腎・利尿薬">腎・利尿薬（15問）</option>
+            <option value="血液・凝固">血液・凝固（15問）</option>
+            <option value="炎症・鎮痛・麻酔">炎症・鎮痛・麻酔（20問）</option>
+            <option value="内分泌・糖尿病">内分泌・糖尿病（25問）</option>
+            <option value="消化器系">消化器系（15問）</option>
+            <option value="呼吸器系">呼吸器系（12問）</option>
+            <option value="感染症">感染症（30問）</option>
+            <option value="抗悪性腫瘍薬">抗悪性腫瘍薬（20問）</option>
+            <option value="免疫・アレルギー">免疫・アレルギー（15問）</option>
+            <option value="生殖器">生殖器（10問）</option>
+            <option value="骨・眼・皮膚">骨・眼・皮膚（8問）</option>
+            <option value="脂質・肥満">脂質・肥満（15問）</option>
           </select>
         </div>
 
@@ -316,14 +318,14 @@
 
     async function loadQuizData() {
       try {
-        const response = await fetch('questions.json');
+        const response = await fetch('questions2.json');
         if (!response.ok) throw new Error('Network response was not ok');
         allQuizData = await response.json();
         document.getElementById('total-count-badge').innerText = `全 ${allQuizData.length} 問収録`;
         document.getElementById('total-pool-display').innerText = allQuizData.length;
         updateStartScreenInfo();
       } catch (error) {
-        console.error('Failed to load questions.json:', error);
+        console.error('Failed to load questions2.json:', error);
         document.getElementById('total-count-badge').innerText = '読込エラー';
       }
     }
